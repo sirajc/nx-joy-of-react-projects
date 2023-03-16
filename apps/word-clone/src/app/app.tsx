@@ -1,13 +1,5 @@
-import NxWelcome from './nx-welcome';
-
 export function App() {
-  return (
-    <>
-      <NxWelcome title="word-clone" />
-
-      <div />
-    </>
-  );
+  return <h1>Word Clone</h1>;
 }
 
 export default App;
