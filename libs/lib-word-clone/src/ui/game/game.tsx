@@ -1,5 +1,6 @@
 import { sample } from '@joy/shared/utils';
 import { WORDS } from '../../data';
+import GameTextInput from './game-text-input/game-text-input';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -7,7 +8,7 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  return <>Put a game here!</>;
+  return <GameTextInput />;
 }
 
 export default Game;
