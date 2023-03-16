@@ -19,7 +19,10 @@
           "apps/word-clone/src/favicon.ico",
           "apps/word-clone/src/assets"
         ],
-        "styles": ["apps/word-clone/src/styles.css"],
+        "styles": [
+          "apps/word-clone/src/reset.css",
+          "apps/word-clone/src/styles.css"
+        ],
         "scripts": [],
         "isolatedConfig": true,
         "webpackConfig": "apps/word-clone/webpack.config.js"
