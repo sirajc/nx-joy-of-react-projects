@@ -1,18 +1,22 @@
-import styles from './guess-board.module.css';
+import { range } from '@joy/shared/utils';
+import { NUM_OF_GUESSES_ALLOWED } from '../../../constants';
+import Guess from './guess/guess';
 
 /* eslint-disable-next-line */
 export interface GuessBoardProps {
   guessedWords: string[];
 }
 
-export function GuessResults({
-  guessedWords,
-}: GuessBoardProps) {
+export function GuessResults({ guessedWords }: GuessBoardProps) {
+  const guesses = range(0, NUM_OF_GUESSES_ALLOWED).map(
+    (value, index) => guessedWords[index] ?? null
+  );
+
   return (
     <div className="guess-results">
-      {guessedWords.map((word, index) => (
+      {guesses.map((word, index) => (
         <p key={index} className="guess">
-          {word}
+          <Guess word={word} />
         </p>
       ))}
     </div>
