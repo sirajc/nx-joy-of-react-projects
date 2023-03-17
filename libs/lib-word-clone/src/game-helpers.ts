@@ -3,7 +3,12 @@
  * solving algorithm!
  */
 
-export function checkGuess(guess: string, answer: string) {
+export interface GuessType {
+  letter: string;
+  status: string;
+}
+
+export function checkGuess(guess: string | undefined, answer: string) {
   // This constant is a placeholder that indicates we've successfully
   // dealt with this character (it's correct, or misplaced).
   const SOLVED_CHAR = '✓';
@@ -15,7 +20,7 @@ export function checkGuess(guess: string, answer: string) {
   const guessChars = guess.toUpperCase().split('');
   const answerChars = answer.split('');
 
-  const result = [];
+  const result: GuessType[] = [];
 
   // Step 1: Look for correct letters.
   for (let i = 0; i < guessChars.length; i++) {
