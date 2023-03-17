@@ -18,7 +18,7 @@ function Game() {
 
   return (
     <>
-      <GuessResults guessedWords={guessedWords} />
+      <GuessResults guessedWords={guessedWords} answer={answer} />
       <GameTextInput onAddGuess={handleAddGuess} />
     </>
   );
