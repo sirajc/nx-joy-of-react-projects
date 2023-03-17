@@ -3,15 +3,15 @@ import { useState } from 'react';
 /* eslint-disable-next-line */
 export interface GameTextInputProps {
   onAddGuess: (gussedWord: string) => void;
+  gameOver: boolean;
 }
 
-export function GameTextInput({ onAddGuess }: GameTextInputProps) {
+export function GameTextInput({ onAddGuess, gameOver }: GameTextInputProps) {
   const [guess, setGuess] = useState('');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleSubmit(event: React.FormEvent): void {
     event.preventDefault();
-    console.log({ guess });
     onAddGuess(guess);
     setGuess('');
   }
@@ -27,6 +27,7 @@ export function GameTextInput({ onAddGuess }: GameTextInputProps) {
         maxLength={5}
         pattern="[A-Z]{5}"
         required
+        disabled={gameOver}
       />
     </form>
   );
