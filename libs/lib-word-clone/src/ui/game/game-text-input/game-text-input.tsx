@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 /* eslint-disable-next-line */
 export interface GameTextInputProps {
-  onAddGuess: (gussedWord: string) => void
+  onAddGuess: (gussedWord: string) => void;
 }
 
 export function GameTextInput({ onAddGuess }: GameTextInputProps) {
@@ -26,6 +26,7 @@ export function GameTextInput({ onAddGuess }: GameTextInputProps) {
         onChange={(event) => setGuess(event?.target.value.toUpperCase())}
         maxLength={5}
         pattern="[A-Z]{5}"
+        required
       />
     </form>
   );
