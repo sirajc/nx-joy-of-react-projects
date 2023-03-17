@@ -1,15 +1,18 @@
 import { useState } from 'react';
 
 /* eslint-disable-next-line */
-export interface GameTextInputProps {}
+export interface GameTextInputProps {
+  onAddGuess: (gussedWord: string) => void
+}
 
-export function GameTextInput(props: GameTextInputProps) {
+export function GameTextInput({ onAddGuess }: GameTextInputProps) {
   const [guess, setGuess] = useState('');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleSubmit(event: React.FormEvent): void {
     event.preventDefault();
     console.log({ guess });
+    onAddGuess(guess);
     setGuess('');
   }
 
