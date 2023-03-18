@@ -14,16 +14,15 @@ export enum GameState {
   LOSE,
 }
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
 function Game() {
+  // Pick a random word on every pageload.
+  const [answer, setAnswer] = useState<string>(sample(WORDS));
   const [guessedWords, setGussedWords] = useState<string[]>([]);
   const [gameState, setGameState] = useState<GameState>(GameState.PLAY);
-
   const [keyStatus, setKeyStatus] = useState<Map<string, string>>(new Map());
+
+  // To make debugging easier, we'll log the solution in the console.
+  console.info({ answer });
 
   function handleAddGuess(guessedWord: string) {
     if (guessedWord === answer) {
@@ -41,6 +40,13 @@ function Game() {
     setKeyStatus(nextKeyStatus);
   }
 
+  function handleRestart() {
+    setGussedWords([]);
+    setKeyStatus(new Map());
+    setAnswer(sample(WORDS));
+    setGameState(GameState.PLAY);
+  }
+
   return (
     <>
       <GuessResults guessedWords={guessedWords} answer={answer} />
@@ -53,6 +59,7 @@ function Game() {
         gameState={gameState}
         noOfGuesses={guessedWords.length}
         answer={answer}
+        onRestart={handleRestart}
       />
     </>
   );

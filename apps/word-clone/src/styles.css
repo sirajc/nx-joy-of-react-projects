@@ -252,6 +252,25 @@ h1 {
 .modal-title {
   margin-bottom: 0.5em;
 }
+.restart {
+  font-size: 1.2rem;
+  background-color: white;
+  color: black;
+  padding: 4px 16px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+.restart:hover {
+  background-color: aquamarine;
+  transform: scale(1.2);
+}
+.restart:active {
+  background-color: aquamarine;
+  transform: scale(1.1);
+}
+.restart-icon {
+  font-size: 1.5rem;
+}
 
 /*
   Keyframe animations
