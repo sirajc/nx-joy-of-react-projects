@@ -20,6 +20,7 @@ function Game() {
   const [guessedWords, setGussedWords] = useState<string[]>([]);
   const [gameState, setGameState] = useState<GameState>(GameState.PLAY);
   const [keyStatus, setKeyStatus] = useState<Map<string, string>>(new Map());
+  const [keyedLetter, setKeyedLetter] = useState<string>('');
 
   // To make debugging easier, we'll log the solution in the console.
   console.info({ answer });
@@ -33,11 +34,12 @@ function Game() {
     setGussedWords([...guessedWords, guessedWord]);
 
     const nextKeyStatus = new Map(keyStatus);
-
     checkGuess(guessedWord, answer)?.map((guessStatus) =>
       nextKeyStatus.set(guessStatus.letter, guessStatus.status)
     );
+
     setKeyStatus(nextKeyStatus);
+    setKeyedLetter('');
   }
 
   function handleRestart() {
@@ -45,6 +47,11 @@ function Game() {
     setKeyStatus(new Map());
     setAnswer(sample(WORDS));
     setGameState(GameState.PLAY);
+    setKeyedLetter('');
+  }
+
+  function handleAddLetter(key: string) {
+    setKeyedLetter(key);
   }
 
   let incorrectLetters = '';
@@ -62,8 +69,13 @@ function Game() {
         onAddGuess={handleAddGuess}
         gameOver={gameState !== GameState.PLAY}
         incorrectLetters={incorrectLetters}
+        appendLetter={keyedLetter}
       />
-      <GameKeyboardInput keyStatus={keyStatus} />
+      <GameKeyboardInput
+        gameState={gameState}
+        keyStatus={keyStatus}
+        onAddLetter={handleAddLetter}
+      />
       <GameEndResult
         gameState={gameState}
         noOfGuesses={guessedWords.length}
