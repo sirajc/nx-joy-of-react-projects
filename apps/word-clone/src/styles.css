@@ -80,10 +80,10 @@ h1 {
   padding: var(--game-spacing) 32px;
   margin: 0 auto;
   min-width: 250px;
-  max-width: min(500px, 58vh, 100%);
+  max-width: min(350px, 50vh, 100%);
 }
 
-.guess-results {
+.guess-results .game-keyboard {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -96,6 +96,21 @@ h1 {
   margin-bottom: 4px;
 }
 
+.keyboard-row {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 3px;
+}
+
+.keyboard-row:nth-child(2) {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.keyboard-row:nth-child(3) {
+  margin-left: 15%;
+  margin-right: 7.5%;
+}
+
 .cell {
   position: relative;
   width: 20%;
@@ -105,6 +120,17 @@ h1 {
   border: 2px solid var(--color-gray-700);
   border-radius: var(--radius);
   font-size: 2rem;
+}
+
+.keyboard-key {
+  position: relative;
+  width: 12%;
+  display: grid;
+  place-content: center;
+  aspect-ratio: 1 / 1.5;
+  border: 2px solid var(--color-gray-700);
+  border-radius: 4px;
+  font-size: 1.25rem;
 }
 
 /*
@@ -124,27 +150,35 @@ h1 {
   --radius: 0px 0px 0px 4px;
 }
 
-.cell.correct {
+.cell.correct,
+.keyboard-key.correct {
   background: var(--color-success);
   border-color: var(--color-success);
   color: white;
 }
-.cell.incorrect {
+.cell.incorrect,
+.keyboard-key.incorrect {
   background: var(--color-gray-300);
   border-color: var(--color-gray-300);
   color: white;
 }
-.cell.misplaced {
+.cell.misplaced,
+.keyboard-key.misplaced {
   background: var(--color-warning);
   border-color: var(--color-warning);
   color: white;
+}
+.keyboard-key.unused {
+  background: var(--color-gray-900);
+  border-color: var(--color-gray-900);
+  color: black;
 }
 
 .guess-input-wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 6.75rem;
+  height: 6rem;
 }
 
 .guess-input-wrapper label {
@@ -154,7 +188,7 @@ h1 {
 .guess-input-wrapper input {
   display: block;
   width: 100%;
-  font-size: 2rem;
+  font-size: 1.6rem;
   border: 2px solid var(--color-gray-300);
   border-radius: 4px;
   padding: 8px 16px;
