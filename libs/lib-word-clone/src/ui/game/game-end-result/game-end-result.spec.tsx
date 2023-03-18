@@ -10,6 +10,7 @@ describe('GameEndResult', () => {
         answer="WORLD"
         gameState={GameState.PLAY}
         noOfGuesses={0}
+        onRestart={() => null}
       />
     );
     expect(baseElement).toBeTruthy();
