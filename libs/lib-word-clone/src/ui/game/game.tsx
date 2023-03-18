@@ -47,12 +47,21 @@ function Game() {
     setGameState(GameState.PLAY);
   }
 
+  let incorrectLetters = '';
+
+  for (const [key, status] of keyStatus.entries()) {
+    if (status === 'incorrect') {
+      incorrectLetters = incorrectLetters + key;
+    }
+  }
+
   return (
     <>
       <GuessResults guessedWords={guessedWords} answer={answer} />
       <GameTextInput
         onAddGuess={handleAddGuess}
         gameOver={gameState !== GameState.PLAY}
+        incorrectLetters={incorrectLetters}
       />
       <GameKeyboardInput keyStatus={keyStatus} />
       <GameEndResult
