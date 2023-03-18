@@ -9,15 +9,11 @@ export interface GuessBoardProps {
 }
 
 export function GuessResults({ guessedWords, answer }: GuessBoardProps) {
-  const guesses = range(0, NUM_OF_GUESSES_ALLOWED).map(
-    (value, index) => guessedWords[index] ?? null
-  );
-
   return (
     <div className="guess-results">
-      {guesses.map((word, index) => (
-        <p key={index} className="guess">
-          <Guess word={word} answer={answer} />
+      {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
+        <p key={num} className="guess">
+          <Guess word={guessedWords[num]} answer={answer} />
         </p>
       ))}
     </div>

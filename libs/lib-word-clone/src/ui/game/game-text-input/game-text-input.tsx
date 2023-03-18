@@ -14,38 +14,38 @@ export function GameTextInput({
   incorrectLetters,
   appendLetter,
 }: GameTextInputProps) {
-  const [guess, setGuess] = useState('');
+  const [tentativeGuess, setTentativeGuess] = useState('');
 
   useEffect(() => {
-    setGuess((guess) => {
-      const newGuess = guess + appendLetter;
-      if (newGuess.length === 5) {
-        onAddGuess(newGuess);
+    setTentativeGuess((prevGuess) => {
+      const newTentativeGuess = prevGuess + appendLetter;
+      if (newTentativeGuess.length === 5) {
+        onAddGuess(newTentativeGuess);
         return '';
       }
-      return newGuess;
+      return newTentativeGuess;
     });
   }, [appendLetter, onAddGuess]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleSubmit(event: React.FormEvent): void {
     event.preventDefault();
-    onAddGuess(guess);
-    setGuess('');
+    onAddGuess(tentativeGuess);
+    setTentativeGuess('');
   }
 
   function handleChange(event: any) {
     const newGuess: string = event?.target.value.toUpperCase();
 
     // User is deleting the char so just let it go
-    if (newGuess.length < guess.length) {
-      setGuess(newGuess);
+    if (newGuess.length < tentativeGuess.length) {
+      setTentativeGuess(newGuess);
     }
     // Already guessed incorrect keys, don't let them add it
     if (incorrectLetters.includes(newGuess.slice(newGuess.length - 1))) {
       return;
     }
-    setGuess(newGuess);
+    setTentativeGuess(newGuess);
   }
 
   return (
@@ -54,12 +54,14 @@ export function GameTextInput({
       <input
         id="guess-input"
         type="text"
-        value={guess}
+        value={tentativeGuess}
         onChange={handleChange}
+        disabled={gameOver}
+        required
+        minLength={5}
         maxLength={5}
         pattern="[A-Z]{5}"
-        required
-        disabled={gameOver}
+        title="5 letter word"
       />
     </form>
   );

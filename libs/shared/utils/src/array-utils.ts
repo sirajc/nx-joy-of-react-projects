@@ -2,7 +2,7 @@ export const sample = (arr: any[]) => {
   return arr[Math.floor(Math.random() * arr.length)];
 };
 
-export const range = (start: number, end: number, step = 1) => {
+export const range = (start: number, end?: number, step = 1) => {
   const output = [];
   if (typeof end === 'undefined') {
     end = start;

@@ -8,17 +8,13 @@ export interface GuessProps {
 }
 
 export function Guess({ word, answer }: GuessProps) {
-  const guesses =
-    checkGuess(word, answer) ??
-    range(0, GUESS_WORD_LENGTH).map(() => {
-      return { letter: '', status: '' };
-    });
+  const result = checkGuess(word, answer);
 
   return (
     <>
-      {guesses.map((guess, index) => (
-        <span key={index} className={`cell ${guess.status}`}>
-          {guess.letter}
+      {range(GUESS_WORD_LENGTH).map((num) => (
+        <span key={num} className={`cell ${result?.[num].status ?? ''}`}>
+          {result?.[num].letter}
         </span>
       ))}
     </>

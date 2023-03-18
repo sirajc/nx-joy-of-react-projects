@@ -27,7 +27,7 @@ export function GameEndResult({
       <div className="happy banner">
         <p>
           <strong>Congratulations!</strong> Got it in
-          <strong> {noOfGuesses} guesses</strong>.
+          <strong>{noOfGuesses === 1 ? ' 1 guess' : ` ${noOfGuesses} guesses`}</strong>.
         </p>
         {restartButton}
       </div>
